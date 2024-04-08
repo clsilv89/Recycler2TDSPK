@@ -5,4 +5,5 @@ data class Personagem(
     val name: String,
     val description: String,
     val modified: String,
+    val url: String,
 )

@@ -11,6 +11,8 @@ import com.caiosilva.recycler2tdspk.databinding.ListItemBinding
 class PersonagensAdapter :
     ListAdapter<Personagem, PersonagensAdapter.MyViewHolder>(AsyncCallback()) {
 
+    var onClick: (personagem: Personagem) -> Unit = {}
+
     inner class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(personagem: Personagem) {
             binding.textViewName.text = personagem.name
@@ -18,7 +20,7 @@ class PersonagensAdapter :
             binding.textViewModified.text = personagem.modified
 
             binding.root.setOnClickListener {
-                println(personagem)
+                onClick(personagem)
             }
         }
     }
