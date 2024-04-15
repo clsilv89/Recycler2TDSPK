@@ -9,28 +9,28 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.caiosilva.recycler2tdspk.databinding.ListItemBinding
 
 class PersonagensAdapter :
-    ListAdapter<Personagem, PersonagensAdapter.MyViewHolder>(AsyncCallback()) {
+    ListAdapter<Album, PersonagensAdapter.MyViewHolder>(AsyncCallback()) {
 
-    var onClick: (personagem: Personagem) -> Unit = {}
+    var onClick: (personagem: Album) -> Unit = {}
 
     inner class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(personagem: Personagem) {
-            binding.textViewName.text = personagem.name
-            binding.textViewDescription.text = personagem.description
-            binding.textViewModified.text = personagem.modified
+        fun bind(album: Album) {
+            binding.textViewName.text = album.title
+            binding.textViewDescription.text = album.thumbnailUrl
+            binding.textViewModified.text = album.url
 
             binding.root.setOnClickListener {
-                onClick(personagem)
+                onClick(album)
             }
         }
     }
 
-    class AsyncCallback : DiffUtil.ItemCallback<Personagem>() {
-        override fun areItemsTheSame(oldItem: Personagem, newItem: Personagem): Boolean {
+    class AsyncCallback : DiffUtil.ItemCallback<Album>() {
+        override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Personagem, newItem: Personagem): Boolean {
+        override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
             return oldItem.id == newItem.id
         }
     }
